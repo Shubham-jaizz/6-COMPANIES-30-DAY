@@ -1,0 +1,50 @@
+Question first:
+        its about PostFix evaluation in which we take one stack and and start from start of the expression and push untill we get one operator then 
+        afet getting operator we pop two integers and operate it according to operator and push the answer into tht stack ans and this untill we traversed whole 
+        expression.
+        
+        
+        
+        class Solution {
+public:
+    int evalRPN(vector<string>& tokens) {
+        stack<int>st;
+        for(int i = 0;i<tokens.size();i++){
+           string s = tokens[i];
+        
+               if(s == "*"||s == "/"||s == "+"||s== "-"){
+                   char ex = s[0];
+                   int op1 = st.top();
+                   st.pop();
+                   int op2 = st.top();
+                   st.pop();
+                   int ans;
+                   switch(ex){
+                       case '*':
+                       ans = op1*op2;
+                       break;
+                       case '/':
+                       ans = op2/op1;
+                       break;
+                       case '+':
+                       ans = op1+op2;
+                       break;
+                       case '-':
+                       ans = op2-op1;
+                       break;
+                       default:
+                       break;
+                   }
+                   st.push(ans);
+               }
+               else{
+                   st.push(stoi(s));
+               }
+           
+        }
+        int sum = st.top();
+        return sum;
+        
+        
+    }
+};
