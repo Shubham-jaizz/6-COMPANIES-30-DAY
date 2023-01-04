@@ -1,0 +1,32 @@
+Here we use the backtracking method in which we take all the cases where we can match the 
+class Solution {
+    //here we use recursion call in which we take all the cases from 1 to 9 and put in the bucket untill the 
+    // the end condition hit the case it will return 
+    // just like the backtracking
+    
+public:
+    void helper(int st,int sum,vector<vector<int>>&ans,vector<int>&buck,int n,int k){
+        if(sum == n && k == 0  ){
+            ans.push_back(buck);
+        }
+            
+        
+        for(int j = st;j<=9;j++){
+            buck.push_back(j);
+           helper(j+1,sum+j,ans,buck,n,k-1);
+            buck.pop_back();
+        }
+    }
+    vector<vector<int>> combinationSum3(int k, int n) {
+        vector<vector<int>>ans;
+        vector<int>buck;
+   
+            helper(1,0,ans,buck,n,k);
+              return ans;   
+             
+        
+        
+       }
+
+    
+};
